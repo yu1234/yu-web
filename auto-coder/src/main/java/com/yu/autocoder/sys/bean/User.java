@@ -1,10 +1,12 @@
 package com.yu.autocoder.sys.bean;
 
 import com.jfinal.plugin.activerecord.Model;
+import com.yu.tools.annotation.JFinalModel;
 
 /**
  * Created by yu on 2017/7/19 0019.
  */
+@JFinalModel(tableName = "user")
 public class User extends Model<User> {
     public static final User dao = new User().dao();
     public static final String TABLE_NAME = "user";
