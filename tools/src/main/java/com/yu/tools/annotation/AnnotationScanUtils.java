@@ -3,8 +3,6 @@ package com.yu.tools.annotation;
 
 import com.yu.tools.string.StringTools;
 import eu.infomas.annotation.AnnotationDetector;
-import org.junit.Test;
-
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
@@ -14,7 +12,14 @@ import java.lang.annotation.Annotation;
 public class AnnotationScanUtils {
 
 
-    public void scanAnnotation(final Class<? extends Annotation>[] annotationClasses, final AnnotationScanReportImpl report, String... scanPackage) {
+    /**
+     * 扫描类注解
+     *
+     * @param annotationClasses 需要扫描的注解
+     * @param report            扫描结果回调
+     * @param scanPackage       需要扫描的包
+     */
+    public static void scanAnnotationByClass(final Class<? extends Annotation>[] annotationClasses, final AnnotationScanReportImpl report, String... scanPackage) {
         AnnotationDetector.Reporter reporter = new AnnotationDetector.TypeReporter() {
             public void reportTypeAnnotation(Class<? extends Annotation> aClass, String s) {
                 report.report(aClass, s);
@@ -24,6 +29,58 @@ public class AnnotationScanUtils {
                 return annotationClasses;
             }
         };
+        startScan(reporter, scanPackage);
+
+    }
+
+    /**
+     * 扫描属性注解
+     *
+     * @param annotationClasses 需要扫描的注解
+     * @param report            扫描结果回调
+     * @param scanPackage       需要扫描的包
+     */
+    public static void scanAnnotationByField(final Class<? extends Annotation>[] annotationClasses, final AnnotationScanReportImpl report, String... scanPackage) {
+        AnnotationDetector.Reporter reporter = new AnnotationDetector.FieldReporter() {
+
+            public void reportFieldAnnotation(Class<? extends Annotation> aClass, String s, String s1) {
+                report.report(aClass, s);
+            }
+
+            public Class<? extends Annotation>[] annotations() {
+                return annotationClasses;
+            }
+        };
+        startScan(reporter, scanPackage);
+    }
+
+    /**
+     * 扫描方法注解
+     *
+     * @param annotationClasses 需要扫描的注解
+     * @param report            扫描结果回调
+     * @param scanPackage       需要扫描的包
+     */
+    public static void scanAnnotationMethod(final Class<? extends Annotation>[] annotationClasses, final AnnotationScanReportImpl report, String... scanPackage) {
+        AnnotationDetector.Reporter reporter = new AnnotationDetector.MethodReporter() {
+            public void reportMethodAnnotation(Class<? extends Annotation> aClass, String s, String s1) {
+                report.report(aClass, s);
+            }
+
+            public Class<? extends Annotation>[] annotations() {
+                return annotationClasses;
+            }
+        };
+        startScan(reporter, scanPackage);
+    }
+
+    /**
+     * 开始扫描
+     *
+     * @param reporter
+     * @param scanPackage
+     */
+    private static void startScan(AnnotationDetector.Reporter reporter, String... scanPackage) {
         AnnotationDetector cf = new AnnotationDetector(reporter);
         try {
             if (StringTools.isNotBlank(scanPackage)) {
