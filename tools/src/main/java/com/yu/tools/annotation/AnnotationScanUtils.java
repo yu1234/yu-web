@@ -19,7 +19,7 @@ public class AnnotationScanUtils {
      * @param report            扫描结果回调
      * @param scanPackage       需要扫描的包
      */
-    public static void scanAnnotationByClass(final Class<? extends Annotation>[] annotationClasses, final AnnotationScanReportImpl report, String... scanPackage) {
+    public static void scanAnnotationByClass(final Class<? extends Annotation>[] annotationClasses, final IAnnotationScanReport report, String... scanPackage) {
         AnnotationDetector.Reporter reporter = new AnnotationDetector.TypeReporter() {
             public void reportTypeAnnotation(Class<? extends Annotation> aClass, String s) {
                 report.report(aClass, s);
@@ -40,7 +40,7 @@ public class AnnotationScanUtils {
      * @param report            扫描结果回调
      * @param scanPackage       需要扫描的包
      */
-    public static void scanAnnotationByField(final Class<? extends Annotation>[] annotationClasses, final AnnotationScanReportImpl report, String... scanPackage) {
+    public static void scanAnnotationByField(final Class<? extends Annotation>[] annotationClasses, final IAnnotationScanReport report, String... scanPackage) {
         AnnotationDetector.Reporter reporter = new AnnotationDetector.FieldReporter() {
 
             public void reportFieldAnnotation(Class<? extends Annotation> aClass, String s, String s1) {
@@ -61,7 +61,7 @@ public class AnnotationScanUtils {
      * @param report            扫描结果回调
      * @param scanPackage       需要扫描的包
      */
-    public static void scanAnnotationMethod(final Class<? extends Annotation>[] annotationClasses, final AnnotationScanReportImpl report, String... scanPackage) {
+    public static void scanAnnotationMethod(final Class<? extends Annotation>[] annotationClasses, final IAnnotationScanReport report, String... scanPackage) {
         AnnotationDetector.Reporter reporter = new AnnotationDetector.MethodReporter() {
             public void reportMethodAnnotation(Class<? extends Annotation> aClass, String s, String s1) {
                 report.report(aClass, s);

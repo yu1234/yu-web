@@ -8,6 +8,7 @@
   <modules>
     <module>auto-coder</module>
     <module>tools</module>
+    <module>JFinalExtPlugin</module>
   </modules>
   <packaging>pom</packaging>
 

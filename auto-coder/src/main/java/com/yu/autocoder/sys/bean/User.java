@@ -1,7 +1,8 @@
 package com.yu.autocoder.sys.bean;
 
 import com.jfinal.plugin.activerecord.Model;
-import com.yu.tools.annotation.JFinalModel;
+import com.yu.jinal.plugin.ext.annotation.annotation.JFinalModel;
+
 
 /**
  * Created by yu on 2017/7/19 0019.
