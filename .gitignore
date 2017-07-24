@@ -1,3 +1,11 @@
-/auto-coder/src/main/webapp/angular4/app/node_modules
 .idea
 yu-web.iml
+auto-coder/auto-coder.iml
+auto-coder/src/main/webapp/angular4/angular-starter/node_modules
+auto-coder/src/main/webapp/angular4/angular-starter/.awcache
+auto-coder/src/main/webapp/angular4/angular-starter/compiled
+auto-coder/target/
+tools/src/main/java/com/yu/tools/integer/
+tools/target/
+tools/tools.iml
+
